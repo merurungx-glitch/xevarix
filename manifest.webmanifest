@@ -1,0 +1,19 @@
+{
+  "name": "XEVARIX",
+  "short_name": "XEVARIX",
+  "description": "NGX と ISHIDA Production がつくる、アプリの形をした OS。",
+  "lang": "ja",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "./index.html",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#01084d",
+  "theme_color": "#01084d",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    { "src": "assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "meta": {
+      ".read": true,
+      ".write": false
+    },
+    "transfer": {
+      "$id": {
+        ".read": "data.exists() && data.child('exp').val() > now",
+        ".write": "(!data.exists() && newData.exists()) || (data.exists() && !newData.exists()) || (data.exists() && data.child('exp').val() < now)",
+        ".validate": "$id.length == 40 && newData.hasChildren(['v', 'exp', 'iv', 'parts']) && newData.child('exp').isNumber() && newData.child('exp').val() > now && newData.child('exp').val() < now + 3600000",
+        "v": { ".validate": "newData.isNumber()" },
+        "exp": { ".validate": "newData.isNumber()" },
+        "size": { ".validate": "newData.isNumber()" },
+        "iv": { ".validate": "newData.isString() && newData.val().length < 64" },
+        "parts": {
+          "$i": { ".validate": "newData.isString() && newData.val().length <= 9500000" }
+        },
+        "$other": { ".validate": false }
+      }
+    },
+    "users": {
+      "$uid": {
+        ".read": true,
+        ".write": true,
+        ".validate": "$uid.length >= 10 && $uid.length <= 40",
+        "t": { ".validate": "newData.isNumber()" },
+        "name": { ".validate": "newData.isString() && newData.val().length <= 40" },
+        "chk": {
+          ".validate": "newData.hasChildren(['s', 'iv', 'ct'])",
+          "s": { ".validate": "newData.isString() && newData.val().length <= 64" },
+          "iv": { ".validate": "newData.isString() && newData.val().length <= 64" },
+          "ct": { ".validate": "newData.isString() && newData.val().length <= 256" },
+          "$other": { ".validate": false }
+        },
+        "reg": {
+          "$k": {
+            ".validate": "$k.length <= 40 && newData.hasChildren(['v', 't'])",
+            "v": { ".validate": "newData.isString() && newData.val().length <= 300000" },
+            "t": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          }
+        },
+        "sec": {
+          "$k": {
+            ".validate": "$k.length <= 40 && newData.hasChildren(['iv', 'ct', 't'])",
+            "iv": { ".validate": "newData.isString() && newData.val().length <= 64" },
+            "ct": { ".validate": "newData.isString() && newData.val().length <= 2000000" },
+            "t": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          }
+        },
+        "notes": {
+          "$id": {
+            ".validate": "$id.length <= 40 && newData.hasChild('t') && (newData.hasChildren(['iv', 'ct']) || newData.hasChild('del'))",
+            "iv": { ".validate": "newData.isString() && newData.val().length <= 64" },
+            "ct": { ".validate": "newData.isString() && newData.val().length <= 1200000" },
+            "del": { ".validate": "newData.isNumber()" },
+            "t": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          }
+        },
+        "$other": { ".validate": false }
+      }
+    }
+  }
+}

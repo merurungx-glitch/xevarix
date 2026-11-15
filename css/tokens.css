@@ -1,0 +1,176 @@
+/* ═══════════════════════════════════════════════════════════════
+   XEVARIX — デザインの土台（色・大きさ・効果の段階）
+   ・本体（index.html）と、窓の中の標準アプリ（apps/app.html）の両方が読む。
+   ・見た目の切りかえは <html> の data-* だけで行う（JS から色を直に書かない）。
+       data-theme   = dark / light
+       data-fx      = full / reduced / minimal   … ぼかし・影・動きの段階（電力モードと端末の力で決まる）
+       data-accent  = cyan / blue / lavender / mint / coral / gold
+       data-contrast= high
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, Menlo, monospace;
+  --ts: 1;
+  font-size: calc(16px * var(--ts));
+
+  /* ロゴから拾った色 */
+  --b-navy: #01084d;
+  --b-deep: #011c82;
+  --b-blue: #0076fd;
+  --b-cyan: #38e6fd;
+  --b-ice: #f0fbfc;
+  --b-lav: #a589fb;
+
+  /* かど・間隔 */
+  --r-xs: 6px;
+  --r-s: 9px;
+  --r-m: 13px;
+  --r-l: 18px;
+  --r-xl: 26px;
+
+  /* 画面の端（ノッチ・ホームバー）。--sab は iPhone のアプリ表示で JS が実測値に直す */
+  --sat: env(safe-area-inset-top, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+
+  --ok: #3ddc97;
+  --warn: #ffb547;
+  --danger: #ff5d73;
+
+  /* 効果（full） */
+  --blur: 22px;
+  --sat-boost: 1.5;
+  --dur: 220ms;
+  --dur-s: 130ms;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --ease-in: cubic-bezier(.5, 0, .9, .4);
+}
+
+/* ── ダーク（標準） ── */
+:root, :root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #020828;
+  --surface-0: #060d36;
+  --surface-1: #0a1444;
+  --surface-2: #101d58;
+  --surface-3: #182a70;
+  --surface-4: #22388a;
+  --glass: rgba(8, 18, 66, .62);
+  --glass-strong: rgba(8, 18, 66, .82);
+  --stroke: rgba(150, 195, 255, .16);
+  --stroke-2: rgba(150, 195, 255, .30);
+  --text: #eef4ff;
+  --text-2: #aebde6;
+  --text-3: #7688bd;
+  --acc: #38e6fd;
+  --acc-2: #0a84ff;
+  --acc-text: #63ebff;
+  --acc-ink: #001a24;
+  --acc-soft: rgba(56, 230, 253, .16);
+  --shadow-1: 0 2px 10px rgba(0, 4, 40, .35);
+  --shadow-2: 0 14px 44px rgba(0, 4, 40, .55);
+  --shadow-win: 0 22px 60px rgba(0, 3, 34, .6), 0 2px 8px rgba(0, 3, 34, .4);
+  --hover: rgba(150, 195, 255, .10);
+  --press: rgba(150, 195, 255, .18);
+  --scrim: rgba(1, 4, 30, .55);
+  --ok-soft: rgba(61, 220, 151, .16);
+  --warn-soft: rgba(255, 181, 71, .16);
+  --danger-soft: rgba(255, 93, 115, .16);
+}
+
+/* ── ライト ── */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #dfe9ff;
+  --surface-0: #eaf1ff;
+  --surface-1: #ffffff;
+  --surface-2: #f3f7ff;
+  --surface-3: #e6eeff;
+  --surface-4: #d6e2ff;
+  --glass: rgba(255, 255, 255, .66);
+  --glass-strong: rgba(255, 255, 255, .88);
+  --stroke: rgba(10, 40, 130, .13);
+  --stroke-2: rgba(10, 40, 130, .26);
+  --text: #0a1644;
+  --text-2: #46578c;
+  --text-3: #7482ab;
+  --acc: #0a84ff;
+  --acc-2: #0057d9;
+  --acc-text: #0057d9;
+  --acc-ink: #ffffff;
+  --acc-soft: rgba(10, 132, 255, .13);
+  --shadow-1: 0 2px 10px rgba(10, 40, 130, .12);
+  --shadow-2: 0 14px 44px rgba(10, 40, 130, .20);
+  --shadow-win: 0 22px 60px rgba(10, 40, 130, .26), 0 2px 8px rgba(10, 40, 130, .14);
+  --hover: rgba(10, 60, 180, .07);
+  --press: rgba(10, 60, 180, .13);
+  --scrim: rgba(10, 30, 90, .32);
+  --ok: #12a868;
+  --warn: #c97a00;
+  --danger: #e0344f;
+  --ok-soft: rgba(18, 168, 104, .13);
+  --warn-soft: rgba(201, 122, 0, .13);
+  --danger-soft: rgba(224, 52, 79, .12);
+}
+
+/* ── アクセント色 ── */
+:root[data-accent="blue"]     { --acc: #4d9bff; --acc-2: #0a5cff; --acc-text: #7db7ff; --acc-ink: #00122e; --acc-soft: rgba(77, 155, 255, .18); }
+:root[data-accent="lavender"] { --acc: #b39cff; --acc-2: #7a5cf0; --acc-text: #c6b5ff; --acc-ink: #150a3a; --acc-soft: rgba(179, 156, 255, .18); }
+:root[data-accent="mint"]     { --acc: #4ff0b8; --acc-2: #0fb98a; --acc-text: #74f5c9; --acc-ink: #00241a; --acc-soft: rgba(79, 240, 184, .16); }
+:root[data-accent="coral"]    { --acc: #ff8f7a; --acc-2: #f0553d; --acc-text: #ffab9b; --acc-ink: #2e0a03; --acc-soft: rgba(255, 143, 122, .17); }
+:root[data-accent="gold"]     { --acc: #ffd166; --acc-2: #f0a51e; --acc-text: #ffdd8c; --acc-ink: #2b1c00; --acc-soft: rgba(255, 209, 102, .17); }
+:root[data-theme="light"][data-accent="cyan"]     { --acc: #0a9fc2; --acc-2: #0079a3; --acc-text: #00789c; --acc-ink: #fff; --acc-soft: rgba(10, 159, 194, .14); }
+:root[data-theme="light"][data-accent="blue"]     { --acc: #0a84ff; --acc-2: #0057d9; --acc-text: #0057d9; --acc-ink: #fff; --acc-soft: rgba(10, 132, 255, .13); }
+:root[data-theme="light"][data-accent="lavender"] { --acc: #7a5cf0; --acc-2: #5a3fd0; --acc-text: #5a3fd0; --acc-ink: #fff; --acc-soft: rgba(122, 92, 240, .13); }
+:root[data-theme="light"][data-accent="mint"]     { --acc: #0fa97e; --acc-2: #0a8563; --acc-text: #0a8563; --acc-ink: #fff; --acc-soft: rgba(15, 169, 126, .13); }
+:root[data-theme="light"][data-accent="coral"]    { --acc: #e8553d; --acc-2: #c93f29; --acc-text: #c93f29; --acc-ink: #fff; --acc-soft: rgba(232, 85, 61, .12); }
+:root[data-theme="light"][data-accent="gold"]     { --acc: #c98a00; --acc-2: #a06e00; --acc-text: #946500; --acc-ink: #fff; --acc-soft: rgba(201, 138, 0, .14); }
+
+/* ── 効果の段階 ── */
+:root[data-fx="reduced"] { --blur: 10px; --sat-boost: 1.2; --dur: 150ms; --dur-s: 100ms; }
+:root[data-fx="minimal"] {
+  --blur: 0px; --sat-boost: 1; --dur: 0ms; --dur-s: 0ms;
+  --shadow-2: 0 4px 14px rgba(0, 4, 40, .4);
+  --shadow-win: 0 6px 18px rgba(0, 3, 34, .5);
+}
+:root[data-fx="minimal"], :root[data-fx="minimal"][data-theme="dark"] { --glass: rgba(8, 18, 66, .96); --glass-strong: rgba(8, 18, 66, .98); }
+:root[data-fx="minimal"][data-theme="light"] { --glass: rgba(255, 255, 255, .97); --glass-strong: rgba(255, 255, 255, .99); }
+:root[data-motion="off"] { --dur: 0ms; --dur-s: 0ms; }
+
+/* ── はっきり表示 ── */
+:root[data-contrast="high"] { --stroke: rgba(170, 210, 255, .42); --stroke-2: rgba(190, 220, 255, .7); --text-2: #d5e0ff; --text-3: #b0c0ee; --glass: rgba(4, 10, 46, .94); }
+:root[data-contrast="high"][data-theme="light"] { --stroke: rgba(10, 40, 130, .4); --stroke-2: rgba(10, 40, 130, .7); --text-2: #223366; --text-3: #3c4d80; --glass: rgba(255, 255, 255, .96); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: .875rem;
+  line-height: 1.5;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+::selection { background: var(--acc-soft); }
+.xi { width: 1.25em; height: 1.25em; flex: none; display: inline-block; vertical-align: -.22em; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ── アプリのタイル（かど丸の地＋記号、または画像）── */
+.xa-tile {
+  position: relative; display: grid; place-items: center; width: 46px; height: 46px; flex: none; overflow: hidden;
+  border-radius: 28%; color: var(--ti, #fff);
+  background: linear-gradient(145deg, var(--t1, #3a4a7a), var(--t2, #1a2450));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), inset 0 -1px 0 rgba(0, 0, 0, .2), 0 2px 7px rgba(0, 5, 40, .32);
+}
+:root[data-icon="circle"] .xa-tile { border-radius: 50%; }
+:root[data-icon="square"] .xa-tile { border-radius: 16%; }
+.xa-tile .xi { width: 56%; height: 56%; stroke-width: 1.9; }
+.xa-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.xa-tile b { font-size: 1.25em; font-weight: 700; line-height: 1; }
+.xa-tile.noimg { background: linear-gradient(145deg, #5a6cc0, #27306a); }
+@media (prefers-reduced-motion: reduce) { :root { --dur: 0ms; --dur-s: 0ms; } }

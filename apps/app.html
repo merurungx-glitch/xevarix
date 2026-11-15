@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja" class="k-html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>XEVARIX</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/kit.css">
+</head>
+<body class="k-body">
+<div id="app" class="k-app"></div>
+<script type="module">
+/* XEVARIX の標準アプリの入れもの。?id=notes のように渡された名前の中身（apps/<id>.js）を読みこむ。
+   OS とのやりとりは、親（本体）からもらう os を通す。 */
+const root = document.getElementById('app');
+const say = msg => { root.textContent = ''; const d = document.createElement('div'); d.className = 'k-empty'; d.textContent = msg; root.append(d); };
+const id = new URLSearchParams(location.search).get('id') || '';
+let host = null;
+try { host = parent && parent !== window && parent.XVX ? parent.XVX : null; } catch { host = null; }
+if (!host) {
+  say('このページは XEVARIX の中で開きます。');
+  const a = document.createElement('a'); a.href = '../index.html'; a.textContent = 'XEVARIX を開く'; a.className = 'btn pri'; a.style.marginTop = '12px'; root.firstChild.append(document.createElement('br'), a);
+} else if (!/^[a-z]{2,24}$/.test(id)) {
+  say('アプリの名前が正しくありません。');
+} else {
+  try {
+    host.theme.applyTo(document);
+    const os = host.sdk.connect(window);
+    const mod = await import('./' + id + '.js');
+    await mod.default(os, root);
+  } catch (e) {
+    console.error(e);
+    say('このアプリを開けませんでした。\n' + (e && e.message ? e.message : e));
+  }
+}
+</script>
+</body>
+</html>
