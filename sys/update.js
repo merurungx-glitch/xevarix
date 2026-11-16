@@ -7,9 +7,15 @@
 import { bus, log, OS } from './core.js';
 
 export const NOTES = [
+  { version: '1.2.1', date: '2026-11-17', items: [
+    'XEVARIX に「β版」の印を付けました（起動画面・ステータスバー・設定の「この XEVARIX について」と「更新」）。',
+    'XEVORA は、XEVORA アカウントの作成・管理と、アプリを開くランチャーだけになりました。XEVARIX のダウンロード・更新・オフライン対応は、これまでどおり XEVARIX の中（設定 → 更新）で行います（前に XEVORA で入れたものは、そのまま使えます）。',
+    'XEVARION のアプリの一覧と設定から、XEVARIX・XEVORA を開けるようになりました。',
+    'ストアに、XEVARION の新作 MagiGura Plate（1台を囲むバランス皿ゲーム）を足しました。',
+  ] },
   { version: '1.2.0', date: '2026-11-15', items: [
     'XEVORA アカウント：これまでの XEVARION のアカウントの名前が「XEVORA アカウント」になりました。XEVARIX と XEVARION は、XEVORA アカウントでのみ使います（ゲストは無くしました）。',
-    'アカウントを作るのは XEVORA（新しいランチャー）だけになりました。XEVORA では、XEVARIX と XEVARION のインストール（オフライン用のデータ）もできます。',
+    'アカウントを作るのは XEVORA（新しいランチャー）だけになりました。',
     'XEVORA アカウントにつないでいない端末のユーザーは、次に開いたときにログインしてから使います（この端末のデータはそのまま）。設定から「ログアウト」もできます。',
     'ストアに、この PC で動く AniReview Studio・PlayCut Studio・CITY RAIL を足しました（別のフォルダのまま開きます。AniReview・PlayCut は、止まっていればサーバーを起動します）。',
     'XEVARIX のロゴとアイコンを新しくし、ドックのまん中の AI のマークを X のマークにしました。',

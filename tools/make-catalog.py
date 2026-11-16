@@ -58,14 +58,14 @@ def local_apps():
     return out
 MATE_SRC = os.path.join(ROOT, "XEVARION", "home-mate.js")
 MATE_KINDS = ["morning", "day", "evening", "night", "idle"]   # ウィジェットの「ひとこと」に使うセリフ（時間帯＋ふだん）
-ACTION_GAMES = {"magibattle", "magiburst", "magiabyss", "magicraft", "magibocciarush", "magimanor", "magiempire"}
+ACTION_GAMES = {"magibattle", "magiburst", "magiabyss", "magicraft", "magibocciarush", "magimanor", "magiempire", "magiguraplate"}
 KEEP_BG = {"magimusic", "magilink"}          # 裏でも止めないもの（音楽・チャット）
 WIDE = {"magibattle", "magidominiongrid", "magishift", "magichainparty", "magirail", "magiscope", "magicraft", "magitier", "magiportfolio",
-        "magicounter", "ngx", "ishida", "magicalfuture", "magimarket", "magiderby", "magiabyss", "magimanor", "magiempire", "magiarena"}
+        "magicounter", "ngx", "ishida", "magicalfuture", "magimarket", "magiderby", "magiabyss", "magimanor", "magiempire", "magiarena", "magiguraplate"}
 BY = {"ishida": "ISHIDA Production", "magicalfuture": "Magical Future"}
 KEYS = {"magilex": ["勉強", "英単語", "化学", "古文", "学習"], "magichemlex": ["化学", "勉強", "問題集"], "magiburst": ["ゲーム", "引っぱり"], "magiquiz": ["クイズ"],
         "magilink": ["チャット", "メッセージ"], "magimusic": ["音楽", "ミュージック"], "magiderby": ["競馬"], "magiscope": ["ランキング", "アニメ"],
-        "magiportfolio": ["株", "持ち株"], "magimarket": ["株", "運用"], "magitier": ["ティア", "ランキング表"], "xevynar": ["学習"], "magifocus": ["勉強", "集中"]}
+        "magiportfolio": ["株", "持ち株"], "magiguraplate": ["バランス", "皿", "パーティー", "ぐらぷれーと"], "magimarket": ["株", "運用"], "magitier": ["ティア", "ランキング表"], "xevynar": ["学習"], "magifocus": ["勉強", "集中"]}
 
 
 def strip_comments(s):

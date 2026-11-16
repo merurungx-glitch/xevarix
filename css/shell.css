@@ -70,6 +70,8 @@ input, textarea, [contenteditable] { user-select: text; -webkit-user-select: tex
 .xsb-btn .xi { width: 15px; height: 15px; }
 .xsb-brand { letter-spacing: .16em; font-size: .72rem; }
 .xsb-brand .orb { width: 16px; height: 16px; }
+/* ★★ 2026-11-17 β版の印（ステータスバー） */
+.xsb-beta { font-style: normal; font-size: .58rem; font-weight: 800; letter-spacing: 0; line-height: 1; padding: 2px 5px; border-radius: 6px; color: #fff; background: linear-gradient(110deg, #0a84ff, #8a5cff 60%, #ff6ab0); }
 .xsb-app { color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 6px; font-weight: 600; min-width: 0; }
 .xsb-appx { display: none; }
 .xsb-clock { font-variant-numeric: tabular-nums; letter-spacing: .02em; }

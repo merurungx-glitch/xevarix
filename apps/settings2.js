@@ -195,7 +195,7 @@ export const PAGES2 = {
     const ST = { idle: '最新です', checking: '確かめています…', available: '新しい版があります', downloading: 'ダウンロード中…', ready: '再起動で更新できます', error: '確かめられませんでした', offline: 'オフラインです' };
     fill(main, page(H('更新'),
       h('div', { class: 'k-grid' },
-        card('いまの版', 'info', h('div', { class: 'k-big' }, i.version), h('div', { class: 'tiny muted' }, i.build + '・' + os.OS.codename)),
+        card('いまの版', 'info', h('div', { class: 'k-big' }, i.version + (os.OS.stage ? ' ' + os.OS.stage : '')), h('div', { class: 'tiny muted' }, i.build + '・' + os.OS.codename)),
         card('状態', 'refresh', h('div', { class: 'k-big', style: 'font-size:1.15rem' }, ST[i.state] || i.state), i.latest && i.latest.version !== i.version ? h('div', { class: 'tiny muted' }, '新しい版: ' + i.latest.version) : null,
           h('div', { style: 'display:flex;gap:6px;flex-wrap:wrap' }, btn('確かめる', async e => { e.currentTarget.disabled = true; await update.check(); redraw(); }, { sm: true, ic: 'refresh' }), i.state === 'ready' ? btn('再起動して更新', () => update.apply(), { sm: true, kind: 'pri' }) : null))),
       group('しくみ',
@@ -242,7 +242,8 @@ export const PAGES2 = {
       h('div', { style: 'display:grid;justify-items:center;gap:8px;padding:10px 0 4px;text-align:center' },
         h('img', { src: '../assets/brand/icon-192.png', alt: '', style: 'width:92px;height:92px;border-radius:24px;box-shadow:var(--shadow-2)' }),
         h('div', { style: 'font-size:1.5rem;font-weight:700;letter-spacing:.2em' }, 'XEVARIX'),
-        h('div', { class: 'muted' }, 'バージョン ' + os.OS.version + '（' + os.OS.build + '・' + os.OS.codename + '）'),
+        os.OS.stage ? h('div', { style: 'padding:2px 12px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.12em;color:#fff;background:linear-gradient(110deg,#0a84ff,#8a5cff 60%,#ff6ab0)' }, os.OS.stage + '（試験公開中）') : null,
+        h('div', { class: 'muted' }, 'バージョン ' + os.OS.version + (os.OS.stage ? ' ' + os.OS.stage : '') + '（' + os.OS.build + '・' + os.OS.codename + '）'),
         h('div', { class: 'tiny muted', style: 'letter-spacing:.12em' }, os.OS.by)),
       group('この端末', kv('OS とブラウザ', d.os + '・' + d.browser), kv('コア数', d.cores), kv('メモリ（見当）', d.memGB ? '約 ' + d.memGB + ' GB' : null), kv('GPU', d.gpu), kv('測定', b ? b.score + ' 点（' + os.perf.tierName(b.tier) + '）' : '未測定'),
         kv('前回の起動', (os.sysreg.get('boot.lastMs') || 0) + ' ミリ秒'), kv('起動してから', fmtDur(os.uptime(), true)), kv('起動した回数', os.sysreg.get('boot.count') + ' 回')),

@@ -24,6 +24,8 @@ html, body { margin: 0; height: 100%; background: #01084d; }
 #xvx-boot .bar i { display: block; width: 4%; height: 100%; border-radius: 2px; background: linear-gradient(90deg, #0a84ff, #38e6fd); transition: width .25s ease; }
 #xvx-boot .msg { font-size: 12px; color: #aebde6; min-height: 1.4em; }
 #xvx-boot .by { font-size: 11px; letter-spacing: .14em; color: #7688bd; margin-top: 6px; }
+/* ★★ 2026-11-17 β版の印（ご指定） */
+#xvx-boot .beta { margin-top: -4px; padding: 3px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .12em; color: #fff; background: linear-gradient(110deg, #0a84ff, #8a5cff 60%, #ff6ab0); box-shadow: 0 6px 18px rgba(80, 60, 255, .35); }
 #xvx-boot .fail { display: none; gap: 8px; flex-wrap: wrap; justify-content: center; max-width: 440px; }
 #xvx-boot.failed .fail { display: flex; }
 #xvx-boot .fail button { height: 38px; padding: 0 16px; border-radius: 11px; border: 1px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .12); color: #fff; font: inherit; font-weight: 600; font-size: 14px; }
@@ -48,6 +50,7 @@ html, body { margin: 0; height: 100%; background: #01084d; }
 <div id="xvx-boot" role="status">
   <div class="bt">
     <img src="assets/brand/xevarix-logo-640.webp" alt="XEVARIX" width="250" height="250">
+    <div class="beta" title="試験公開中">β版</div>
     <div class="bar"><i id="xvx-boot-bar"></i></div>
     <div class="msg" id="xvx-boot-msg">起動しています…</div>
     <pre id="xvx-boot-err"></pre>

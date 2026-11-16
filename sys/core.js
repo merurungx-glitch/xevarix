@@ -2,8 +2,10 @@
 
 export const OS = {
   name: 'XEVARIX',
-  version: '1.2.0',
-  build: '2026-11-15',
+  version: '1.2.1',
+  build: '2026-11-17',
+  /* ★★ 2026-11-17 ご指定「XEVARIX にβ版のマークを」→ 起動画面・ステータスバー・設定（この XEVARIX について・更新）に「β版」 */
+  stage: 'β版',
   codename: 'Aurora',
   by: 'NGX × ISHIDA Production',
 };

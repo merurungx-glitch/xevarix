@@ -23,7 +23,7 @@ export function setOrbBusy(busy, listen) { aiBusy = !!busy; aiListen = !!listen;
 /* ── ステータスバー ── */
 function buildStatus() {
   const bar = document.getElementById('xvx-status');
-  el.brand = h('button', { class: 'xsb-btn xsb-brand', type: 'button', 'aria-label': 'システムメニュー', onclick: e => systemMenu(e.currentTarget) }, registerOrb(makeOrb()), h('span', null, 'XEVARIX'));
+  el.brand = h('button', { class: 'xsb-btn xsb-brand', type: 'button', 'aria-label': 'システムメニュー', onclick: e => systemMenu(e.currentTarget) }, registerOrb(makeOrb()), h('span', null, 'XEVARIX'), h('em', { class: 'xsb-beta', title: 'β版（試験公開中）' }, 'β'));   /* ★★ 2026-11-17 β版の印 */
   el.app = h('span', { class: 'xsb-app' });
   el.appx = h('button', { class: 'xsb-btn xsb-appx', type: 'button', 'aria-label': 'この窓の操作', onclick: e => windowMenu(e.currentTarget) }, icon('more'));
   el.ind = h('span', { class: 'xsb-ind' });

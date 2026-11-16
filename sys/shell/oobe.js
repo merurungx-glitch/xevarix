@@ -25,6 +25,8 @@ export function runOOBE({ first = true } = {}) {
       () => card(
         h('img', { class: 'xo-logo', src: 'assets/brand/icon-192.png', alt: '' }),
         h('h2', { style: 'text-align:center' }, 'XEVARIX へようこそ'),
+        /* ★★ 2026-11-17 ご指定「XEVARIX にβ版のマークを」 */
+        h('div', { style: 'justify-self:center;align-self:center;margin:-4px auto 2px;padding:3px 12px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.12em;color:#fff;background:linear-gradient(110deg,#0a84ff,#8a5cff 60%,#ff6ab0);width:max-content' }, 'β版（試験公開中）'),
         h('p', { style: 'text-align:center' }, first ? 'NGX と ISHIDA Production がつくる、アプリの形をした OS です。\nはじめに、いくつかだけ決めましょう。1分ほどで終わります。' : 'この端末をいっしょに使う人を足します。設定やファイルは人ごとに分かれます。'),
         /* XEVARIX は XEVORA アカウントでのみ使う。ログインすると、名前と見た目はクラウドから戻るので、端末の測定へ進む */
         h('p', { style: 'text-align:center' }, 'XEVARIX は XEVORA アカウント（XEVARION と同じアカウント）で使います。'),
